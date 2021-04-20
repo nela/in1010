@@ -25,7 +25,6 @@ class Oblig6 {
         // les start-koordinater fra standard input
 
         l.printLabyrint();
-        l.finnAapninger();
 
         Scanner inn = new Scanner(System.in);
         System.out.println("Skriv inn koordinater <kolonne> <rad> ('a' for aa avslutte)");
@@ -34,7 +33,6 @@ class Oblig6 {
             try {
                 int startKol = Integer.parseInt(ord[0]);
                 int startRad = Integer.parseInt(ord[1]);
-                l.finnNaboer(startKol, startRad);
                 System.out.println("Utveier:");
                 ArrayList<ArrayList<Tuppel>> utveier = l.finnUtveiFra(startKol, startRad);
                 for (ArrayList<Tuppel> lis: utveier) {

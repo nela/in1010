@@ -1,10 +1,10 @@
 public class Tuppel {
-    protected int x;
     protected int y;
+    protected int x;
 
-    public Tuppel(int x, int y) {
-        this.x = x;
+    public Tuppel(int y, int x) {
         this.y = y;
+        this.x = x;
     }
 
     @Override

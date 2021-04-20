@@ -8,4 +8,6 @@ public class Aapning extends HvitRute {
         System.out.println("Ny åpning! Thread: " + Thread.currentThread());
         labyrint.utveier.leggTil(ruter);
     }
+
+    public void resettBesoekt() {}
 }
