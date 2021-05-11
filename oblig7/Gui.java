@@ -33,7 +33,7 @@ public class Gui {
 
         menuBar.add(new ExitButton("Avslutt"));
 
-        JPanel panel = new JPanel(new GridLayout(labyrint.xCount, labyrint.yCount));
+        JPanel panel = new JPanel(new GridLayout(labyrint.yCount, labyrint.xCount));
         makeGrid(labyrint.hentBrett(), panel);
 
         window.add(panel);
@@ -43,8 +43,8 @@ public class Gui {
     }
 
     public static void makeGrid(Rute[][] board, JPanel panel) {
-        for (int x = 0; x < labyrint.xCount; x++) {
-            for (int y = 0; y < labyrint.yCount; y++) {
+        for (int y = 0; y < labyrint.yCount; y++) {
+            for (int x = 0; x < labyrint.xCount; x++) {
                 RuteKnapp ruteKnapp = null;
 
                 System.out.println(x + " " + y);
