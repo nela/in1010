@@ -1,16 +1,18 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 public class Gui {
 
     public static Labyrint labyrint;
+
     public static void main(String[] args) {
-
-
         JFileChooser fc = new JFileChooser();
         int choice = fc.showOpenDialog(null);
         if (choice != JFileChooser.APPROVE_OPTION) System.exit(1);
@@ -33,76 +35,98 @@ public class Gui {
 
         menuBar.add(new ExitButton("Avslutt"));
 
-        JPanel panel = new JPanel(new GridLayout(labyrint.yCount, labyrint.xCount));
-        makeGrid(labyrint.hentBrett(), panel);
+        JPanel brettPanel = new JPanel(new GridLayout(labyrint.yCount, labyrint.xCount));
 
-        window.add(panel);
+        RuteKnapp[][] brettKnapper = lagGrid(labyrint, brettPanel);
+
+        window.add(brettPanel);
         window.pack();
         window.setVisible(true);
 
     }
 
-    public static void makeGrid(Rute[][] board, JPanel panel) {
-        for (int y = 0; y < labyrint.yCount; y++) {
-            for (int x = 0; x < labyrint.xCount; x++) {
+    public static RuteKnapp[][] lagGrid(Labyrint l, JPanel brettPanel) {
+        Rute[][] brett = l.hentBrett();
+
+        RuteKnapp[][] brettKnapper = new RuteKnapp[l.yCount][l.xCount];
+        for (int y = 0; y < l.yCount; y++) {
+            for (int x = 0; x < l.xCount; x++) {
                 RuteKnapp ruteKnapp = null;
 
                 System.out.println(x + " " + y);
-                if (board[y][x] instanceof HvitRute) {
-                    ruteKnapp = new HvitRuteKnapp(x, y);
+                if (brett[y][x] instanceof HvitRute) {
+                    ruteKnapp = new HvitRuteKnapp(l, x, y, brettKnapper);
                 }
-                if (board[y][x] instanceof SortRute) {
-                    ruteKnapp = new SortRuteKnapp(x, y);
-                    // lk set on action
-                    // set style
+                if (brett[y][x] instanceof SortRute) {
+                    ruteKnapp = new SortRuteKnapp(l, brettKnapper, x, y);
                 }
 
-                panel.add(ruteKnapp);
+                brettKnapper[y][x] = ruteKnapp;
+                brettPanel.add(ruteKnapp);
             }
         }
+
+        return brettKnapper;
     }
 }
 
-abstract class RuteKnapp extends JLabel implements ActionListener {
-    private final int x;
-    private final int y;
-    String farge = "";
+abstract class RuteKnapp extends JLabel implements MouseListener {
+    protected final int x;
+    protected final int y;
+    protected final Labyrint l;
 
-    public RuteKnapp(int x, int y) {
+    public RuteKnapp(Labyrint l, int x, int y) {
         this.x = x;
         this.y = y;
+        this.l = l;
         setPreferredSize(new Dimension(25, 25));
         setOpaque(true);
+        addMouseListener(this);
     }
 
-    public void settFarge(char c) {
-        if (c == 's') farge = "svart";
-        else if (c == 'h') farge = "hvit";
-        else if (c == 'b') farge = "blaa";
-    }
+    @Override
+    public void mouseReleased(MouseEvent e) {}
 
-    public String hentFarge() { return this.farge; }
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 }
 
+
 class HvitRuteKnapp extends RuteKnapp {
-    public HvitRuteKnapp(int x, int y) {
-        super(x, y);
+    RuteKnapp[][] brettKnapper;
+
+    public HvitRuteKnapp(Labyrint l, int x, int y, RuteKnapp[][] brettKnapper) {
+        super(l, x, y);
+        this.brettKnapper = brettKnapper;
         setBackground(Color.WHITE);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void mouseClicked(MouseEvent e) {
+        this.l.finnUtveiFra(this.x, this.y);
+
+        ArrayList<Tuppel> losning = this.l.finnKortesteUtvei();
+
+        for (Tuppel t : losning)
+            brettKnapper[t.y][t.x].setBackground(Color.BLUE);
+    }
+
 }
 
-
 class SortRuteKnapp extends RuteKnapp {
-    public SortRuteKnapp(int x, int y) {
-        super(x, y);
+    public SortRuteKnapp(Labyrint l, RuteKnapp[][] brettKnapper, int x, int y) {
+        super(l, x, y);
         setBackground(Color.BLACK);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {}
+    public void mouseClicked(MouseEvent e) {}
 }
 
 class ExitButton extends Button implements ActionListener {
@@ -116,4 +140,11 @@ class ExitButton extends Button implements ActionListener {
         System.out.println("Avslutter...");
         System.exit(0);
     }
+}
+
+class MenuBar extends JMenuBar {
+    public MenuBar() {
+
+    }
+
 }
