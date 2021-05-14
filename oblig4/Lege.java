@@ -63,6 +63,6 @@ public class Lege implements Comparable<Lege> {
 
     @Override
     public String toString() {
-        return ("Legenavn: " + this.navn);
+        return (this.navn);
     }
 }

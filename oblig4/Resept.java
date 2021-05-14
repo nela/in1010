@@ -57,7 +57,7 @@ public abstract class Resept {
         else if (this.legemiddel instanceof Vanlig)
             return skrivUt("Vanlig");
 
-        return "Legemidde - Noe gikk galt";
+        return "Legemiddel - Noe gikk galt";
     }
 
     abstract public String farge();

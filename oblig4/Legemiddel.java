@@ -9,7 +9,6 @@ public abstract class Legemiddel {
 
   public Legemiddel(String navn, double pris, double virkestoff){
     this.id = ++nextId;
-
     this.navn = navn;
     this.pris = pris;
     this.virkestoff = virkestoff;
@@ -30,8 +29,7 @@ public abstract class Legemiddel {
 
   @Override
   public String toString() {
-    return ("Navn: " + this.navn + ".\n" +
-            "Pris: " + this.pris + "kr.\n" +
-            "Mengde: " + this.virkestoff + "mg.\n");
+    return (this.navn + " Pris: " + this.pris + " kr. " +
+            "Virkestoff: " + this.virkestoff + " mg.");
   }
 }

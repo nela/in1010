@@ -4,19 +4,19 @@ public class Pasient extends Stabel<Resept> {
 
     protected int id = 0;
     protected String navn;
-    protected String fnr;
+    protected long fnr;
     protected Stabel<Resept> resepter;
 
-    public Pasient(String navn, String fnr) {
+    public Pasient(String navn, long fnr) {
         this.navn = navn;
         this.fnr = fnr;
-        this.id = nextId++;
+        this.id = ++nextId;
         this.resepter = new Stabel<Resept>();
     }
 
     public String hentNavn() { return this.navn; }
 
-    public String hentfNr() { return this.fnr; }
+    public long hentFnr() { return this.fnr; }
 
     public int hentId() { return this.id; }
 
@@ -26,6 +26,6 @@ public class Pasient extends Stabel<Resept> {
 
     @Override
     public String toString() {
-        return (this.id +": "+ this.navn + " (fnr "+ this.fnr +")");
+        return ("Id: " + this.id +": "+ this.navn + " (fnr " + fnr +")");
     }
 }

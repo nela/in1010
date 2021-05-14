@@ -91,7 +91,7 @@ public class Lenkeliste<T> implements Liste<T> {
         node.data = x;
     }
 
-    public T hent(int pos) {
+    public T hent(int pos) throws NullPointerException {
         Node node = hentNode(pos);
         return node.data;
     }

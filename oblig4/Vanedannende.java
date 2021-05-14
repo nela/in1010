@@ -11,6 +11,6 @@ public class Vanedannende extends Legemiddel {
 
   @Override
   public String toString() {
-    return(super.toString() + "Styrke: " + this.styrke + ".\n");
+    return(super.toString() + "Styrke: " + this.styrke);
   }
 }
