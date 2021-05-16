@@ -342,7 +342,7 @@ public class Legesystem {
         for (Lege l : this.leger)
             if (l instanceof Spesialist)
                 this.ioHandler.skrivMelding("Lege\t" + ((Spesialist)l).hentNavn()
-                    + "\tAntall utskrifter på Narkotiske resepter: "
+                    + "\t\t\tAntall utskrifter på Narkotiske resepter: "
                     + ((Spesialist)l).hentAntallNarkotiske());
 
         for (Pasient p : pasienter) {
@@ -353,7 +353,7 @@ public class Legesystem {
 
             if (pAntNarc > 0)
                 this.ioHandler.skrivMelding("Pasient " + p.hentNavn() + ", Id: "
-                    + p.hentId() + "\tAntall narkotiske resepter: " + pAntNarc);
+                    + p.hentId() + "\t\t\tAntall narkotiske resepter: " + pAntNarc);
         }
     }
 

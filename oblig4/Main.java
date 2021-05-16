@@ -22,7 +22,7 @@ public class Main {
         legesystem = new Legesystem(ioHandler);
 
         legesystem.init(ioHandler.lesFil(args[0]));
-        legesystem.oversikt();
+        // legesystem.oversikt();
 
         while(true) {
             ioHandler.skrivOverskrift("Hovedmeny - 'q' for å avslutte når som helst");

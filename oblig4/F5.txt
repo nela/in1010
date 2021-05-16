@@ -1,0 +1,12 @@
+Gikk helt greit å løse dette alene. Litt mye jobb. Stor oppgave som
+innebærer veldig mye repetisjon av kodekonsepter. Arbeidsmengden samsvarer ikke
+med det (tenkte) læringsutbyttet.
+
+Fordeler med å jobbe alene:
+- Sløser ikke tid på unødvendige møter
+- Sløser ikke tid på å forklare ting til folk som sliter med å skjønne
+- Arkitektoniske endringer kan foretas kjapt uten å måtte forklares og
+  godkjennes av alle
+- Slipper skjev innsats og skjev fordeling av arbeidet
+Ulemper med å jobbe alene:
+- Mye kode å skrive.

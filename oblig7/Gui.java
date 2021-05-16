@@ -143,8 +143,11 @@ class ExitButton extends Button implements ActionListener {
 }
 
 class MenuBar extends JMenuBar {
+    public JButton exitButton;
+    public JButton openFile;
+
     public MenuBar() {
 
+// koko
     }
-
 }
